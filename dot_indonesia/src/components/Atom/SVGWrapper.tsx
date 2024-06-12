@@ -1,21 +1,24 @@
-export function SvgWrapper({
+import React, {FC, ReactNode} from 'react';
+import {View} from 'react-native';
+
+export interface ISVGWrapper {
+  width: number;
+  height: number;
+  aspectRatio: number;
+  children: ReactNode;
+}
+
+export const SVGWrapper: FC<ISVGWrapper> = ({
   width,
   height,
   aspectRatio,
   children,
-}: {
-  width: number | string | undefined;
-  height?: number | string | undefined;
-  aspectRatio: number;
-  children: React.ReactNode;
-}) {
+}) => {
   return (
-    <View
-      style={{
-        width: width,
-        height: height,
-      }}>
-      <View style={{aspectRatio: aspectRatio}}>{children}</View>
+    <View style={{width, height}}>
+      <View style={{aspectRatio}}>{children}</View>
     </View>
   );
-}
+};
+
+export default SVGWrapper;
