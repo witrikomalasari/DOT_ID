@@ -1,11 +1,11 @@
-import {SvgWrapper} from '@components/Atom';
-import React from 'react';
+import React, {FC} from 'react';
 import {Path, Svg} from 'react-native-svg';
 import IconTypeProps from './typeInterface';
+import {SVGWrapper} from '@components/Atom';
 
-const SearchIcon = ({width = 20, height = 20, color}: IconTypeProps) => {
+const SearchIcon: FC<IconTypeProps> = ({width = 20, height = 20, color}) => {
   return (
-    <SvgWrapper
+    <SVGWrapper
       width={width}
       height={height}
       aspectRatio={20 / 20}

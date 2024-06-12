@@ -1,4 +1,3 @@
-import {FavoriteIcon, HomeIcon, ProfileIcon} from '@assets/Icons';
 import {HeaderApp} from '@components/Molecules';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Beranda from '@screens/Beranda/Beranda';
@@ -6,6 +5,7 @@ import FavoriteScreen from '@screens/Favorite/FavoriteScreen';
 import {DOTColors} from '@theme/DotColors';
 import React, {FC} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {HomeTab, TabBarIconProps} from './HomeTabIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,9 +15,10 @@ const Home: FC<IHomeProps> = () => {
   return (
     <Tab.Navigator
       backBehavior="initialRoute"
-      screenOptions={() => ({
+      screenOptions={({route}) => ({
         lazy: true,
         headerShown: false,
+        tabBarIcon: (props: TabBarIconProps) => HomeTab(props, route),
         tabBarStyle: {
           backgroundColor: DOTColors.secondary,
           height: 55,
@@ -34,27 +35,9 @@ const Home: FC<IHomeProps> = () => {
         tabBarActiveTintColor: DOTColors.primary,
         tabBarInactiveTintColor: DOTColors.gray,
       })}>
-      <Tab.Screen
-        name="All List"
-        component={Beranda}
-        options={{
-          tabBarIcon: ({color}) => <HomeIcon width={26} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="FavoriteScreen"
-        component={FavoriteScreen}
-        options={{
-          tabBarIcon: ({color}) => <FavoriteIcon width={26} color={color} />,
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={DummyPage}
-        options={{
-          tabBarIcon: ({color}) => <ProfileIcon width={26} color={color} />,
-        }}
-      />
+      <Tab.Screen name="All List" component={Beranda} />
+      <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
+      <Tab.Screen name="Profile" component={DummyPage} />
     </Tab.Navigator>
   );
 };

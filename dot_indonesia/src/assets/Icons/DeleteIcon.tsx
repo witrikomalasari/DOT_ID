@@ -1,11 +1,15 @@
-import {SvgWrapper} from '@components/Atom';
-import React from 'react';
+import React, {FC} from 'react';
 import {Path, Svg} from 'react-native-svg';
 import IconTypeProps from './typeInterface';
+import {SVGWrapper} from '@components/Atom';
 
-export const DeleteIcon = ({width = 25, height = 25, color}: IconTypeProps) => {
+export const DeleteIcon: FC<IconTypeProps> = ({
+  width = 25,
+  height = 25,
+  color,
+}) => {
   return (
-    <SvgWrapper
+    <SVGWrapper
       width={width}
       height={height}
       aspectRatio={25 / 25}

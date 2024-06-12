@@ -1,11 +1,15 @@
-import {SvgWrapper} from '@components/Atom';
-import React from 'react';
+import React, {FC} from 'react';
 import {Path, Svg} from 'react-native-svg';
 import IconTypeProps from './typeInterface';
+import {SVGWrapper} from '@components/Atom';
 
-export const ArrowLeft = ({width = 24, height = 24, color}: IconTypeProps) => {
+export const ArrowLeft: FC<IconTypeProps> = ({
+  width = 24,
+  height = 24,
+  color,
+}) => {
   return (
-    <SvgWrapper
+    <SVGWrapper
       width={width}
       height={height}
       aspectRatio={24 / 24}

@@ -2,8 +2,8 @@ import React, {FC, ReactNode} from 'react';
 import {View} from 'react-native';
 
 export interface ISVGWrapper {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   aspectRatio: number;
   children: ReactNode;
 }

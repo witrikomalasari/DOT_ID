@@ -32,7 +32,7 @@ const AppStack = () => {
         headerShown: false,
         animation: 'simple_push',
       }}
-      initialRouteName="Home">
+      initialRouteName="SplashScreen">
       {getCurrentRoutes()}
     </Stack.Navigator>
   );
@@ -54,7 +54,7 @@ export const MainNavigator = (props: NavigationProps) => {
 
 MainNavigator.displayName = 'MainNavigator';
 
-const exitRoutes = ['Home'];
+const exitRoutes = ['SplashScreen'];
 export const canExit = (routeName: string) => exitRoutes.includes(routeName);
 
 const DOTTheme = {

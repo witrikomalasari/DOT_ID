@@ -1,11 +1,15 @@
-import {SvgWrapper} from '@components/Atom';
-import React from 'react';
+import {SVGWrapper} from '@components/Atom';
+import React, {FC} from 'react';
 import {Path, Svg} from 'react-native-svg';
 import IconTypeProps from './typeInterface';
 
-export const HomeIcon = ({width, height, color}: IconTypeProps) => {
+export const HomeIcon: FC<IconTypeProps> = ({
+  width = 25,
+  height = 25,
+  color,
+}) => {
   return (
-    <SvgWrapper
+    <SVGWrapper
       width={width}
       height={height}
       aspectRatio={24 / 25}
