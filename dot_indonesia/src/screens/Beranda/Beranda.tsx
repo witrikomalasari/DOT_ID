@@ -5,7 +5,7 @@ import {useAppDispatch} from '@hooks/useAppDispatch';
 import {useBaseNavigation} from '@hooks/useBaseNavigation';
 import {Movie} from '@models/movieInterface';
 import {getMovieDataAsync} from '@redux/actions/movieAsynchron';
-import {DOTColors} from '@theme/DotColors';
+import {DOTColors} from 'theme/DotColors';
 import React, {
   FC,
   ReactNode,

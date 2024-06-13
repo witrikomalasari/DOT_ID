@@ -1,6 +1,6 @@
 import React from 'react';
 import {FavoriteIcon, HomeIcon, ProfileIcon} from '@assets/Icons';
-import {DOTColors} from '@theme/DotColors';
+import {DOTColors} from 'theme/DotColors';
 
 export interface TabBarIconProps {
   focused: boolean;

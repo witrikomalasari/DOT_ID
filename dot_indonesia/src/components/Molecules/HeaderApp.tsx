@@ -1,7 +1,7 @@
 import {ArrowLeft} from '@assets/Icons';
 import {useBaseNavigation} from '@hooks/useBaseNavigation';
-import {DOTColors} from '@theme/DotColors';
-import {type} from '@theme/DotFonts';
+import {DOTColors} from 'theme/DotColors';
+import {type} from 'theme/DotFonts';
 import React, {FC} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import DOTText from './DotText/DotText';

@@ -2,7 +2,7 @@ import {HeaderApp} from '@components/Molecules';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Beranda from '@screens/Beranda/Beranda';
 import FavoriteScreen from '@screens/Favorite/FavoriteScreen';
-import {DOTColors} from '@screens/theme/DotColors';
+import {DOTColors} from 'theme/DotColors';
 import React, {FC} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {HomeTab, TabBarIconProps} from './HomeTabIcon';

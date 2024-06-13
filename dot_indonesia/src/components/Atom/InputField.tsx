@@ -1,4 +1,4 @@
-import {DOTColors} from '@theme/DotColors';
+import {DOTColors} from 'theme/DotColors';
 import React, {FC, useState} from 'react';
 import {StyleSheet, TextInput, View, ViewStyle} from 'react-native';
 import Spacer from './Spacer';
