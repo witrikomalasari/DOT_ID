@@ -1,4 +1,4 @@
-import {type, weight} from 'theme/DotFonts';
+import {type, weight} from '@theme/DotFonts';
 import {TextStyle} from 'react-native';
 
 export type DOTTextType = 'header' | 'normal' | 'bold';

@@ -4,8 +4,8 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 
 import {Spacer} from '@components/Atom';
 import {useAppSelector} from '@hooks/useAppSelector';
-import {DOTColors} from 'theme/DotColors';
 import {Video} from '@models/movieInterface';
+import {DOTColors} from '@theme/DotColors';
 
 const {width} = Dimensions.get('window');
 

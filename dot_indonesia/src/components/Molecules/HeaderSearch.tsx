@@ -1,6 +1,6 @@
 import {SearchIcon} from '@assets/Icons';
 import {Icon} from '@rneui/themed';
-import {DOTColors} from 'theme/DotColors';
+import {DOTColors} from '@theme/DotColors';
 import React, {FC} from 'react';
 import {
   Dimensions,

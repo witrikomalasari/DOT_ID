@@ -1,8 +1,8 @@
-import {DOTColors} from 'theme/DotColors';
 import React, {FC, useState} from 'react';
 import {StyleSheet, TextInput, View, ViewStyle} from 'react-native';
 import Spacer from './Spacer';
 import {DOTText} from '@components/Molecules';
+import {DOTColors} from '@theme/DotColors';
 
 interface IInputFieldProps {
   value?: string;

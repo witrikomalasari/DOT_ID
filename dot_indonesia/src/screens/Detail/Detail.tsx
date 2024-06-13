@@ -17,8 +17,8 @@ import {DetailScreenRouteProps} from '@navigators/navigatorParams';
 import {useRoute} from '@react-navigation/native';
 import {getMovieDetail, getVideoMovie} from '@redux/actions/movieAsynchron';
 import {Icon} from '@rneui/themed';
-import {DOTColors} from 'theme/DotColors';
-import {type} from 'theme/DotFonts';
+import {DOTColors} from '@theme/DotColors';
+import {type} from '@theme/DotFonts';
 
 export interface IDetailScreen {}
 

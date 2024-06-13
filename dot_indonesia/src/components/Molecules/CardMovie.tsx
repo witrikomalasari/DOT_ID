@@ -2,8 +2,8 @@ import {IMAGE_URL} from '@API/DotAPI';
 import {Spacer} from '@components/Atom';
 import {Movie} from '@models/movieInterface';
 import {NavigationProp} from '@react-navigation/native';
-import {DOTColors} from 'theme/DotColors';
-import {type} from 'theme/DotFonts';
+import {DOTColors} from '@theme/DotColors';
+import {type} from '@theme/DotFonts';
 import dayjs from 'dayjs';
 import React, {FC, memo, ReactNode, useCallback, useMemo} from 'react';
 import {
