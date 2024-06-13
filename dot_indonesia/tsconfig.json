@@ -16,7 +16,7 @@
       "@screens/*": ["src/screens/*"],
       "@navigators/*": ["src/navigators/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@theme/*": ["src/theme/*"],
+      "@theme/*": ["src/screens/theme/*"],
       "@utils/*": ["src/utils/*"],
       "@API/*": ["src/API/*"],
       "@redux/*": ["src/redux/*"],
