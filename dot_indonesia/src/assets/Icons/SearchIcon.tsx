@@ -3,7 +3,11 @@ import {Path, Svg} from 'react-native-svg';
 import IconTypeProps from './typeInterface';
 import {SVGWrapper} from '@components/Atom';
 
-const SearchIcon: FC<IconTypeProps> = ({width = 20, height = 20, color}) => {
+export const SearchIcon: FC<IconTypeProps> = ({
+  width = 20,
+  height = 20,
+  color,
+}) => {
   return (
     <SVGWrapper
       width={width}
