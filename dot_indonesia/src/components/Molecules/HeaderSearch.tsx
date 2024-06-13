@@ -1,4 +1,5 @@
-import {DeleteIcon, SearchIcon} from '@assets/Icons';
+import {SearchIcon} from '@assets/Icons';
+import {Icon} from '@rneui/themed';
 import {DOTColors} from '@theme/DotColors';
 import React, {FC} from 'react';
 import {
@@ -39,7 +40,7 @@ export const HeaderSearch: FC<IHeaderSearch> = ({
         <TouchableOpacity
           style={styles.wrappDeleteIcon}
           onPress={() => onDelete && onDelete()}>
-          <DeleteIcon color={DOTColors.white} />
+          <Icon name="clear" type="material" color={DOTColors.white} />
         </TouchableOpacity>
       </View>
     </View>

@@ -1,14 +1,17 @@
+import {Movie} from '@models/movieInterface';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Detail from '@screens/Detail/Detail';
+import DetailScreen from '@screens/Detail/Detail';
 import Home from '@screens/Home/Home';
+import PlayVideo from '@screens/PlayVideo/PlayVideo';
 import SplashScreen from '@screens/SplashScreen/SplashScreen';
 import React, {ComponentProps, Fragment} from 'react';
 
 export type NavigatorParamList = {
   SplashScreen: undefined;
   Home: undefined;
-  Detail: undefined;
+  DetailScreen: Movie;
+  PlayVideo: undefined;
 };
 
 const Stack = createNativeStackNavigator<NavigatorParamList>();
@@ -18,7 +21,8 @@ const AppStack = () => {
     <Fragment>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
+      <Stack.Screen name="PlayVideo" component={PlayVideo} />
     </Fragment>
   );
 

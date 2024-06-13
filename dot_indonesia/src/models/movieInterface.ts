@@ -15,14 +15,31 @@ export interface Movie {
   vote_count?: number;
 }
 
-export interface movieFavorite extends Movie {
+export interface MovieFavorite extends Movie {
   favorite: boolean;
 }
 
+export interface Video {
+  iso_639_1?: string;
+  iso_3166_1?: string;
+  name?: string;
+  key?: string;
+  site?: string;
+  size?: number;
+  type?: string;
+  official?: boolean;
+  published_at?: string;
+  id?: string;
+}
+
 export interface MovieState {
-  movies: movieFavorite[];
+  movies: MovieFavorite[];
+  detailMovie: Movie | {};
+  videoMovies: Video[];
 }
 
 export const initialMovieState: MovieState = {
   movies: [],
+  detailMovie: {},
+  videoMovies: [],
 };

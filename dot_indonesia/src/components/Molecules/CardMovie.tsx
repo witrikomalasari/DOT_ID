@@ -3,12 +3,13 @@ import {Spacer} from '@components/Atom';
 import {Movie} from '@models/movieInterface';
 import {NavigationProp} from '@react-navigation/native';
 import {DOTColors} from '@theme/DotColors';
+import {type} from '@theme/DotFonts';
 import dayjs from 'dayjs';
-import React, {FC, ReactNode, useCallback, useMemo} from 'react';
+import React, {FC, memo, ReactNode, useCallback, useMemo} from 'react';
 import {
   FlatList,
   Image,
-  ListRenderItemInfo,
+  ListRenderItem,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -20,7 +21,7 @@ type CardMovieProps = {
   navigation: NavigationProp<any>;
   styleContent?: object;
   styleImages?: object;
-  keyExtractor: (item: Movie) => string;
+  keyExtractor: (item: Movie, index: number) => string;
   numColumns?: number;
   horizontal?: boolean;
   bounces?: boolean;
@@ -32,9 +33,56 @@ type CardMovieProps = {
   maxToRenderPerBatch?: number;
   updateCellsBatchingPeriod?: number;
   ListFooterComponent?: () => ReactNode | null;
-  ListEmptyComponent?: () => ReactNode;
+  ListEmptyComponent?: () => ReactNode | null;
   onScroll?: (event: any) => void;
 };
+
+const RenderItem: FC<{
+  item: Movie;
+  navigation: NavigationProp<any>;
+  styleContent?: object;
+  styleImages?: object;
+}> = memo(({item, navigation, styleContent, styleImages}) => {
+  // console.log('item', item);
+  const handleToMovieDetail = useCallback(
+    async (movieData: Movie) => {
+      await navigation.navigate('DetailScreen', movieData);
+    },
+    [navigation],
+  );
+
+  const handleReleaseDate = useCallback((dateTime: string) => {
+    const formatDates = 'ddd DD, YYYY';
+    return dayjs(dateTime).format(formatDates);
+  }, []);
+
+  return (
+    <View
+      key={`${item.id}_${item.title}`}
+      style={{justifyContent: 'center', alignItems: 'center'}}>
+      <TouchableOpacity
+        style={[styles.content, styleContent]}
+        onPress={() => handleToMovieDetail(item)}>
+        <Image
+          source={{uri: `${IMAGE_URL}${item.poster_path}`}}
+          resizeMode="cover"
+          style={[styles.image, styleImages]}
+        />
+        <Spacer height={10} />
+        <Text
+          style={[styles.txt, {fontWeight: '800'}]}
+          numberOfLines={2}
+          ellipsizeMode="tail">
+          {item.title}
+        </Text>
+        <Spacer height={5} />
+        <Text style={[styles.txt, {fontSize: 11}]}>
+          {handleReleaseDate(item.release_date!)}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+});
 
 const CardMovie: FC<CardMovieProps> = ({
   data = [],
@@ -47,60 +95,25 @@ const CardMovie: FC<CardMovieProps> = ({
   ListEmptyComponent,
   ...restProps // Rest operator to capture all other props not explicitly destructured
 }) => {
-  const handleToMovieDetail = useCallback(
-    async (movieData: Movie) => {
-      navigation.navigate('Detail', movieData);
-    },
-    [navigation],
+  const renderItem: ListRenderItem<Movie> = ({item}) => (
+    <RenderItem
+      item={item}
+      navigation={navigation}
+      styleContent={styleContent}
+      styleImages={styleImages}
+    />
   );
 
-  const handleReleaseDate = (dateTime: string) => {
-    const formatDates = 'ddd DD, YYYY';
-    return dayjs(dateTime).format(formatDates);
-  };
-
-  const renderPoster = useCallback(
-    ({item}: ListRenderItemInfo<Movie>) => (
-      <View key={`${item.id}_${item.title}`}>
-        <TouchableOpacity
-          style={[styles.content, styleContent]}
-          onPress={() => handleToMovieDetail(item)}>
-          <Image
-            source={{uri: `${IMAGE_URL}${item.poster_path}`}}
-            resizeMode="cover"
-            style={[styles.image, styleImages]}
-          />
-          <Spacer height={5} />
-          <Text style={styles.txt} numberOfLines={2} ellipsizeMode="tail">
-            {item.title}
-          </Text>
-          <Spacer height={2} />
-          <Text style={[styles.txt, {fontSize: 11}]}>
-            {handleReleaseDate(item.release_date!)}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    ),
-    [handleToMovieDetail, styleContent, styleImages],
-  );
-
-  const memoizedRenderPoster = useMemo(() => renderPoster, [renderPoster]);
   const memoizedData = useMemo(() => data, [data]);
   const memoizedKeyExtractor = useCallback(keyExtractor, [keyExtractor]);
 
   return (
     <View style={styles.container}>
       <Spacer height={10} />
-      {/* <SubCategory
-        type={props.type}
-        titleCategory={props.titleCategory}
-        navigation={props.onPress}
-      /> */}
-
       {data.length > 0 ? (
         <FlatList
           data={memoizedData}
-          renderItem={memoizedRenderPoster}
+          renderItem={renderItem}
           keyExtractor={memoizedKeyExtractor}
           horizontal={horizontal}
           showsHorizontalScrollIndicator={false}
@@ -109,7 +122,12 @@ const CardMovie: FC<CardMovieProps> = ({
           {...restProps}
         />
       ) : (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <Text
             style={[styles.txt, {color: DOTColors.secondary, fontSize: 14}]}>
             Opps...Movie not found!
@@ -120,21 +138,30 @@ const CardMovie: FC<CardMovieProps> = ({
   );
 };
 
-export default CardMovie;
+export default memo(CardMovie);
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: DOTColors.white,
   },
   content: {
-    width: 90, // wp(90),
-    height: 195, //hp(195),
-    backgroundColor: DOTColors.white,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
     overflow: 'hidden',
     marginHorizontal: 6,
-    // backgroundColor: 'red',
+    backgroundColor: DOTColors.white,
+    marginBottom: 20,
   },
   image: {
     width: 90, //wp(90),
@@ -144,9 +171,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txt: {
-    color: DOTColors.primary,
+    color: DOTColors.secondary,
     fontSize: 12,
-    // fontFamily: fonts.primary['700'],
+    fontFamily: type.SFProSemiBold,
     textAlign: 'center',
   },
 });

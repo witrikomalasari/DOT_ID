@@ -32,13 +32,40 @@ export const getMovieDataAsync = createAsyncThunk(
 );
 
 export const getMovieDetail = createAsyncThunk(
-  'detail/getJobsDetail',
-  async ID => {
+  'detail/getMovieDetail',
+  async (ID: number) => {
+    const options = {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${Token}`,
+      },
+    };
     try {
-      const {data} = await DotAPIs.get(`movie/${ID}?language=en-U`);
-      console.log('DETAIL MOVIE', JSON.stringify(data.data, null, 2));
+      const {data} = await DotAPIs.get(`movie/${ID}?language=en-U`, options);
+      console.log('DETAIL MOVIE', JSON.stringify(data, null, 2));
 
       return data;
+    } catch (error) {
+      console.log('fetch data movie', error);
+    }
+  },
+);
+
+export const getVideoMovie = createAsyncThunk(
+  'video/getVideoMovie',
+  async (ID: number) => {
+    const options = {
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${Token}`,
+      },
+    };
+    try {
+      const {data} = await DotAPIs.get(`movie/${ID}/videos`, options);
+      console.log('VIDEO MOVIE', JSON.stringify(data, null, 2));
+      if (data && data.results) {
+        return data.results;
+      }
     } catch (error) {
       console.log('fetch data movie', error);
     }
