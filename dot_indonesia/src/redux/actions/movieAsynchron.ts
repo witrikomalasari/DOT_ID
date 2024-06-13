@@ -42,7 +42,7 @@ export const getMovieDetail = createAsyncThunk(
     };
     try {
       const {data} = await DotAPIs.get(`movie/${ID}?language=en-U`, options);
-      console.log('DETAIL MOVIE', JSON.stringify(data, null, 2));
+      // console.log('DETAIL MOVIE', JSON.stringify(data, null, 2));
 
       return data;
     } catch (error) {
@@ -62,7 +62,7 @@ export const getVideoMovie = createAsyncThunk(
     };
     try {
       const {data} = await DotAPIs.get(`movie/${ID}/videos`, options);
-      console.log('VIDEO MOVIE', JSON.stringify(data, null, 2));
+      // console.log('VIDEO MOVIE', JSON.stringify(data, null, 2));
       if (data && data.results) {
         return data.results;
       }

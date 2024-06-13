@@ -1,5 +1,6 @@
 import React from 'react';
 import {FavoriteIcon, HomeIcon, ProfileIcon} from '@assets/Icons';
+import {DOTColors} from '@theme/DotColors';
 
 export interface TabBarIconProps {
   focused: boolean;
@@ -13,7 +14,7 @@ interface Route {
 
 export const HomeTab = ({focused, color}: TabBarIconProps, route: Route) => {
   let IconComponent: JSX.Element | null;
-  const focusedColor = focused ? 'blue' : color; // Change 'blue' to your desired focused color
+  const focusedColor = focused ? DOTColors.white : color; // Change 'blue' to your desired focused color
 
   switch (route.name) {
     case 'All List':

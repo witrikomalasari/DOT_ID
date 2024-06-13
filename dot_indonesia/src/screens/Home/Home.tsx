@@ -20,10 +20,11 @@ const Home: FC<IHomeProps> = () => {
         headerShown: false,
         tabBarIcon: (props: TabBarIconProps) => HomeTab(props, route),
         tabBarStyle: {
-          backgroundColor: DOTColors.secondary,
+          backgroundColor: DOTColors.black,
           height: 55,
           borderTopWidth: 0,
-          // borderTopLeftRadius: 20,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
           elevation: 10,
           shadowColor: DOTColors.shadow,
           shadowOpacity: 0.6,
@@ -32,7 +33,7 @@ const Home: FC<IHomeProps> = () => {
           paddingBottom: 5,
         },
         tabBarShowLabel: true,
-        tabBarActiveTintColor: DOTColors.primary,
+        tabBarActiveTintColor: DOTColors.white,
         tabBarInactiveTintColor: DOTColors.gray,
       })}>
       <Tab.Screen name="All List" component={Beranda} />
